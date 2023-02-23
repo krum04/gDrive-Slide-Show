@@ -1,0 +1,12 @@
+# .gitignore
+
+# Ignore client secrets file
+client_secrets.json
+
+# Ignore all images in the images folder
+images/*.jpg
+images/*.jpeg
+images/*.png
+
+# Ignore __pycache__ folder
+__pycache__/
