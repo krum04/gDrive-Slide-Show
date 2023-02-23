@@ -47,9 +47,9 @@ while running:
         imgHeight = int(imgHeight*ratio)
 
         # create a blurred version of the image and paste the original onto it
-        bluredImage = pilImage.resize((2000, 2000), Image.ANTIALIAS).filter(ImageFilter.GaussianBlur(radius=30))
+        bluredImage = pilImage.resize((4000, 4000), Image.ANTIALIAS).filter(ImageFilter.GaussianBlur(radius=30))
         pilImage = pilImage.resize((imgWidth, imgHeight), Image.ANTIALIAS)
-        bluredImage.paste(pilImage, (int(1000-(imgWidth/2)), int(1000-(imgHeight/2))))
+        bluredImage.paste(pilImage, (int(2000-(imgWidth/2)), int(2000-(imgHeight/2))))
 
         # convert the image to a Tkinter-compatible format and display it
         imageTk = ImageTk.PhotoImage(bluredImage)
