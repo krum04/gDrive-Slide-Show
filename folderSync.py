@@ -4,7 +4,11 @@ from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from oauth2client.service_account import ServiceAccountCredentials
 import os
-clientSecrets = 'client_secrets.json' # path to client_secrets.json file
+
+# set currentDir
+currentDir = os.path.realpath(os.path.dirname(__file__))
+
+clientSecrets = f'{currentDir}/client_secrets.json' # path to client_secrets.json file
 
 def folderSync():
     try:
@@ -15,7 +19,7 @@ def folderSync():
         drive = GoogleDrive(gauth)
 
         # Get a list of file names in the local directory and the Google Drive directory
-        local_file_names = os.listdir('images')
+        local_file_names = os.listdir(f'{currentDir}/images')
         drive_file_names = [file['title'] for file in drive.ListFile().GetList() if file['mimeType'].split('/')[0] == 'image']
 
         # Sort the lists of file names so they can be compared
@@ -33,14 +37,14 @@ def folderSync():
             for file in drive.ListFile().GetList():
                 if file['mimeType'].split('/')[0] == 'image':
                     if file['title'] not in local_file_names:
-                        file.GetContentFile(f"images/{file['title']}")
+                        file.GetContentFile(f"{currentDir}/images/{file['title']}")
 
         # Create a list of file paths in the local directory and return it
-        list_return = [f'images/{file}' for file in os.listdir('images')]
+        list_return = [f'{currentDir}/images/{file}' for file in os.listdir('images')]
         return list_return
     
     # If there is an exception, return a list of file paths in the local directory
     except Exception as e:
         print(e)
-        list_return = [f'images/{file}' for file in os.listdir('images')]
+        list_return = [f'{currentDir}/images/{file}' for file in os.listdir('images')]
         return list_return

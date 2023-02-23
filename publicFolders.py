@@ -1,5 +1,5 @@
 # publicFolders.py
-# still a work in progress
+# Work in progress
 
 import requests
 import shutil

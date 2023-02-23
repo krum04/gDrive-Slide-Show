@@ -1,7 +1,11 @@
 # main.py
 import tkinter
 from PIL import Image, ImageTk, ImageFilter
-from folderSync import folderSync 
+from folderSync import folderSync
+import os
+
+# set currentDir
+currentDir = os.path.realpath(os.path.dirname(__file__))
 
 # create a Tkinter window
 root = tkinter.Tk()
